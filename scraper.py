@@ -19,7 +19,7 @@ PASSWORD = os.getenv('PASSWORD')
 def convert_to_iso(schedule, date_range):
 
     time_range = schedule.split(' ', 1)
-    start_time_str, end_time_str = time_range.split(' - ')
+    start_time_str, end_time_str = time_range[1].split(' - ')
 
     start_date_str, end_date_str = date_range.split(' - ')
     start_date = datetime.strptime(start_date_str, '%d/%m/%Y')
