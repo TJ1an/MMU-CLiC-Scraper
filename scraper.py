@@ -4,7 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
-from datetime import datetime, timedelta
+from datetime import datetime
 import os
 from dotenv import load_dotenv
 
@@ -17,11 +17,8 @@ USERID = os.getenv('USERID')
 PASSWORD = os.getenv('PASSWORD')
 
 def convert_to_iso(schedule, date_range):
-    days = {
-        'Mo': 0, 'Tu': 1, 'We': 2, 'Th': 3, 'Fr': 4, 'Sa': 5, 'Su': 6
-    }
 
-    day_abbr, time_range = schedule.split(' ', 1)
+    time_range = schedule.split(' ', 1)
     start_time_str, end_time_str = time_range.split(' - ')
 
     start_date_str, end_date_str = date_range.split(' - ')
