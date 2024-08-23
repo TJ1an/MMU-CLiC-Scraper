@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from bs4 import BeautifulSoup
@@ -41,8 +42,11 @@ def convert_to_iso(schedule, date_range):
 
 
 def scrape():
+    
+    options = Options()
+    options.add_argument("--log-level=1")
     service = Service(executable_path="chromedriver.exe")
-    driver = webdriver.Chrome(service=service)
+    driver = webdriver.Chrome(options=options)
 
     driver.get("https://clic.mmu.edu.my/psp/csprd/?&cmd=login&languageCd=ENG")
 
@@ -51,6 +55,13 @@ def scrape():
     driver.find_element(By.NAME, 'pwd').send_keys(PASSWORD)
 
     # Submit the form
+    driver.find_element(By.NAME, 'Submit').click()
+    
+    OTP = input("Please enter the OTP and press Enter to continue: ")
+    
+    driver.find_element(By.NAME, 'userid').send_keys(USERID)
+    driver.find_element(By.NAME, 'otp').send_keys(OTP)
+    
     driver.find_element(By.NAME, 'Submit').click()
 
     # Navigate to the schedule page

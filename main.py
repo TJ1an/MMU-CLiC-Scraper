@@ -10,6 +10,7 @@ from scraper import scrape
 SCOPES = ["https://www.googleapis.com/auth/calendar"]
 
 def main():
+    
     """Shows basic usage of the Google Calendar API and integrates with the scraper."""
     creds = None
     # The file token.json stores the user's access and refresh tokens, and is
